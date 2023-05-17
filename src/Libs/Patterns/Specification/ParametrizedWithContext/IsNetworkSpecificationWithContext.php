@@ -5,10 +5,12 @@ namespace App\Libs\Patterns\Specification\ParametrizedWithContext;
 /**
  * @author Robert Mkrtchyan <mkrtchyanrobert@gmail.com>
  */
-class Has8DecimalsSpecificationWithContext implements SpecificationWithContext {
+class IsNetworkSpecificationWithContext implements SpecificationWithContext {
+
+	public function __construct(protected string $network) {}
 
 	public function isSatisfiedBy(SpecificationContext $context): bool {
-		return $context->getDigits() === 8;
+		return $context->getCryptocurrencyNetwork() === $this->network;
 	}
 
 }
