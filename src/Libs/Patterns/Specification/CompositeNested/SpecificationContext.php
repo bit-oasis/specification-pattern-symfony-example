@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Libs\Patterns\Specification\CompositeNested;
+
+use App\Libs\Patterns\Specification\Items\Cryptocurrency;
+
+/**
+ * @author Robert Mkrtchyan <mkrtchyanrobert@gmail.com>
+ */
+class SpecificationContext {
+
+	/**
+	 * @param Cryptocurrency $cryptocurrency
+	 */
+	public function __construct(protected Cryptocurrency $cryptocurrency) {}
+
+	/**
+	 * @return string
+	 */
+	public function getCryptocurrencyName(): string {
+		return $this->cryptocurrency->getName();
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getCryptocurrencyNetwork(): string {
+		return $this->cryptocurrency->getNetwork();
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getDigits(): int {
+		return $this->cryptocurrency->getDigits();
+	}
+}
