@@ -12,7 +12,7 @@ class BTC implements Cryptocurrency {
 		return self::NETWORK_BITCOIN;
 	}
 
-	public function getDecimals(): int {
+	public function getDigits(): int {
 		return 8;
 	}
 }

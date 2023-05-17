@@ -5,10 +5,12 @@ namespace App\Libs\Patterns\Specification\Composite;
 /**
  * @author Robert Mkrtchyan <mkrtchyanrobert@gmail.com>
  */
-class IsErc20SpecificationWithContext implements Specification {
+class IsNetworkSpecification implements Specification {
+
+	public function __construct(protected string $network) {}
 
 	public function isSatisfiedBy(SpecificationContext $specificationContext): bool {
-		return $specificationContext->getCryptocurrencyNetwork() === 'ERC20';
+		return $specificationContext->getCryptocurrencyNetwork() === $this->network;
 	}
 
 }

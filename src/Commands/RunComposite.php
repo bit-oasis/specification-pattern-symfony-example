@@ -2,12 +2,12 @@
 
 namespace App\Commands;
 
+use App\Libs\Patterns\Specification\Composite\HasDigitsSpecification;
+use App\Libs\Patterns\Specification\Composite\IsNetworkSpecification;
 use App\Libs\Patterns\Specification\Composite\Logical\AllSpecification;
 use App\Libs\Patterns\Specification\Composite\Logical\AnySpecification;
 use App\Libs\Patterns\Specification\Composite\Logical\NotSpecification;
 use App\Libs\Patterns\Specification\Composite\SpecificationContext;
-use App\Libs\Patterns\Specification\Composite\IsErc20SpecificationWithContext;
-use App\Libs\Patterns\Specification\Composite\Has8DecimalsSpecificationWithContext;
 use App\Libs\Patterns\Specification\Items\BTC;
 use App\Libs\Patterns\Specification\Items\DOT;
 use App\Libs\Patterns\Specification\Items\ETC;
@@ -47,8 +47,8 @@ class RunComposite extends Command {
 		$dotContext = new SpecificationContext(new DOT());
 
 		$compositeSpec = new AnySpecification([
-			new IsErc20SpecificationWithContext(),
-			new Has8DecimalsSpecificationWithContext()
+			new IsNetworkSpecification('ERC20'),
+			new HasDigitsSpecification(8)
 		]);
 
 		$output->writeln('<info>' . $ethContext->getCryptocurrencyName() . ' - ' . ($compositeSpec->isSatisfiedBy($ethContext) ? 'is ERC20 or has 8 decimals' : 'is not ERC20 and does not have 8 decimals'));
@@ -64,8 +64,8 @@ class RunComposite extends Command {
 		$dotContext = new SpecificationContext(new DOT());
 
 		$compositeSpec = new AllSpecification([
-			new IsErc20SpecificationWithContext(),
-			new Has8DecimalsSpecificationWithContext()
+			new IsNetworkSpecification('ERC20'),
+			new HasDigitsSpecification(8)
 		]);
 
 		$output->writeln('<error>' . $ethContext->getCryptocurrencyName() . ' - ' . ($compositeSpec->isSatisfiedBy($ethContext) ? 'is ERC20 and has 8 decimals' : 'is not ERC20 or does not have 8 decimals'));
@@ -80,7 +80,7 @@ class RunComposite extends Command {
 		$btcContext = new SpecificationContext(new BTC());
 		$dotContext = new SpecificationContext(new DOT());
 
-		$compositeSpec = new NotSpecification(new IsErc20SpecificationWithContext());
+		$compositeSpec = new NotSpecification(new IsNetworkSpecification('ERC20'));
 
 		$output->writeln('<error>' . $ethContext->getCryptocurrencyName() . ' - ' . ($compositeSpec->isSatisfiedBy($ethContext) ? 'is not ERC20' : 'is ERC20'));
 		$output->writeln('<error>' . $galaContext->getCryptocurrencyName() . ' - ' . ($compositeSpec->isSatisfiedBy($galaContext) ? 'is not ERC20' : 'is ERC20'));
@@ -98,9 +98,9 @@ class RunComposite extends Command {
 		// Currency must be ERC20 AND must not have 8 decimals
 		// So expected results are ETH and ETC (which are ERC20 and doesn't have 8 decimals)
 		$compositeSpec = new AllSpecification([
-			new IsErc20SpecificationWithContext(),
+			new IsNetworkSpecification('ERC20'),
 			new NotSpecification(
-				new Has8DecimalsSpecificationWithContext()
+				new HasDigitsSpecification(8)
 			)
 		]);
 

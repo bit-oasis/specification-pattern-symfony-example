@@ -5,10 +5,12 @@ namespace App\Libs\Patterns\Specification\Composite;
 /**
  * @author Robert Mkrtchyan <mkrtchyanrobert@gmail.com>
  */
-class Has8DecimalsSpecificationWithContext implements Specification {
+class HasDigitsSpecification implements Specification {
+
+	public function __construct(protected int $digits) {}
 
 	public function isSatisfiedBy(SpecificationContext $specificationContext): bool {
-		return $specificationContext->getDecimals() === 8;
+		return $specificationContext->getDigits() === $this->digits;
 	}
 
 }

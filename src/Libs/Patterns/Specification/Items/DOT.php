@@ -12,7 +12,7 @@ class DOT implements Cryptocurrency {
 		return self::NETWORK_DOT;
 	}
 
-	public function getDecimals(): int {
+	public function getDigits(): int {
 		return 10;
 	}
 }

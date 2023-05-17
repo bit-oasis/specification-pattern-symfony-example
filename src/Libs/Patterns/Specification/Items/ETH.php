@@ -12,7 +12,7 @@ class ETH implements Cryptocurrency {
 		return self::NETWORK_ERC20;
 	}
 
-	public function getDecimals(): int {
+	public function getDigits(): int {
 		return 18;
 	}
 }

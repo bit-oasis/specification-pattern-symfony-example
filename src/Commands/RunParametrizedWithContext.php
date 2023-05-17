@@ -2,11 +2,8 @@
 
 namespace App\Commands;
 
-use App\Libs\Patterns\Specification\Cryptocurrency;
 use App\Libs\Patterns\Specification\Items\BTC;
-use App\Libs\Patterns\Specification\Items\DOT;
 use App\Libs\Patterns\Specification\Items\ETH;
-use App\Libs\Patterns\Specification\Items\GALA;
 use App\Libs\Patterns\Specification\Items\XRP;
 use App\Libs\Patterns\Specification\ParametrizedWithContext\Has8DecimalsSpecificationWithContext;
 use App\Libs\Patterns\Specification\ParametrizedWithContext\IsErc20SpecificationWithContext;

@@ -31,7 +31,7 @@ class SpecificationContext {
 	/**
 	 * @return int
 	 */
-	public function getDecimals(): int {
-		return $this->cryptocurrency->getDecimals();
+	public function getDigits(): int {
+		return $this->cryptocurrency->getDigits();
 	}
 }

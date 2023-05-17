@@ -8,7 +8,7 @@ namespace App\Libs\Patterns\Specification\ParametrizedWithContext;
 class Has8DecimalsSpecificationWithContext implements SpecificationWithContext {
 
 	public function isSatisfiedBy(SpecificationContext $context): bool {
-		return $context->getDecimals() === 8;
+		return $context->getDigits() === 8;
 	}
 
 }

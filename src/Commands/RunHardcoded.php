@@ -2,9 +2,10 @@
 
 namespace App\Commands;
 
-use App\Libs\Patterns\Specification\HardCoded\IsErc20Specification;
+use App\Libs\Patterns\Specification\HardCoded\IsErc20AndHas8DigitsSpecification;
 use App\Libs\Patterns\Specification\Items\BTC;
 use App\Libs\Patterns\Specification\Items\ETH;
+use App\Libs\Patterns\Specification\Items\GALA;
 use App\Libs\Patterns\Specification\Items\XRP;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -17,16 +18,16 @@ class RunHardcoded extends Command {
 	protected function execute(InputInterface $input, OutputInterface $output): int {
 
 		$eth = new ETH();
+		$gala = new GALA();
 		$btc = new BTC();
 		$xrp = new XRP();
 
-		$ethIsErc20Spec = new IsErc20Specification($eth);
-		$btcIsErc20Spec = new IsErc20Specification($btc);
-		$xrpIsErc20Spec = new IsErc20Specification($xrp);
+		$spec = new IsErc20AndHas8DigitsSpecification();
 
-		$output->writeln('<info>' . $eth->getName() . ' - ' . ($ethIsErc20Spec->isSatisfied() ? 'is ERC20' : 'is not ERC20'));
-		$output->writeln('<error>' . $btc->getName() . ' - ' . ($btcIsErc20Spec->isSatisfied() ? 'is ERC20' : 'is not ERC20'));
-		$output->writeln('<error>' . $xrp->getName() . ' - ' . ($xrpIsErc20Spec->isSatisfied() ? 'is ERC20' : 'is not ERC20'));
+		$output->writeln('<error>' . $eth->getName() . ' - ' . ($spec->isSatisfiedBy($eth) ? 'is ERC20 and has 8 digits' : 'is not ERC20 or does not have 8 digits'));
+		$output->writeln('<info>' . $gala->getName() . ' - ' . ($spec->isSatisfiedBy($gala) ? 'is ERC20 and has 8 digits' : 'is not ERC20 or does not have 8 digits'));
+		$output->writeln('<error>' . $btc->getName() . ' - ' . ($spec->isSatisfiedBy($btc) ? 'is ERC20 and has 8 digits' : 'is not ERC20 or does not have 8 digits'));
+		$output->writeln('<error>' . $xrp->getName() . ' - ' . ($spec->isSatisfiedBy($xrp) ? 'is ERC20 and has 8 digits' : 'is not ERC20 or does not have 8 digits'));
 
 		return Command::SUCCESS;
 	}

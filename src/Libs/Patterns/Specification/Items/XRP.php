@@ -12,7 +12,7 @@ class XRP implements Cryptocurrency {
 		return self::NETWORK_RIPPLE;
 	}
 
-	public function getDecimals(): int {
+	public function getDigits(): int {
 		return 8;
 	}
 }

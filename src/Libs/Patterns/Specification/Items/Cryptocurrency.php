@@ -25,5 +25,5 @@ interface Cryptocurrency {
 	/**
 	 * @return int
 	 */
-	public function getDecimals(): int;
+	public function getDigits(): int;
 }
