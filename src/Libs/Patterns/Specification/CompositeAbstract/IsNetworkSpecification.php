@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Libs\Patterns\Specification\CompositeNested;
+namespace App\Libs\Patterns\Specification\CompositeAbstract;
 
 /**
  * @author Robert Mkrtchyan <mkrtchyanrobert@gmail.com>

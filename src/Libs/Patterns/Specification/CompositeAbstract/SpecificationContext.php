@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Libs\Patterns\Specification\CompositeNested;
+namespace App\Libs\Patterns\Specification\CompositeAbstract;
 
 use App\Libs\Patterns\Specification\Items\Cryptocurrency;
 

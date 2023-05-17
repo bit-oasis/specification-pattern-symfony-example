@@ -2,9 +2,9 @@
 
 namespace App\Commands;
 
-use App\Libs\Patterns\Specification\CompositeNested\HasDigitsSpecification;
-use App\Libs\Patterns\Specification\CompositeNested\IsNetworkSpecification;
-use App\Libs\Patterns\Specification\CompositeNested\SpecificationContext;
+use App\Libs\Patterns\Specification\CompositeAbstract\HasDigitsSpecification;
+use App\Libs\Patterns\Specification\CompositeAbstract\IsNetworkSpecification;
+use App\Libs\Patterns\Specification\CompositeAbstract\SpecificationContext;
 use App\Libs\Patterns\Specification\Items\BTC;
 use App\Libs\Patterns\Specification\Items\DOT;
 use App\Libs\Patterns\Specification\Items\ETC;
@@ -16,8 +16,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-#[AsCommand(name: 'run:compositeNested', description: 'php bin/console run:compositeNested')]
-class RunCompositeNested extends Command {
+#[AsCommand(name: 'run:compositeAbstract', description: 'php bin/console run:compositeAbstract')]
+class RunCompositeAbstract extends Command {
 
 	protected function configure(): void
 	{
@@ -27,8 +27,8 @@ class RunCompositeNested extends Command {
 	protected function execute(InputInterface $input, OutputInterface $output): int {
 
 		switch ($input->getArgument('type')) {
-			case 'any': $this->testAny($output);break;
-			case 'all': $this->testAll($output);break;
+			case 'or': $this->testAny($output);break;
+			case 'and': $this->testAll($output);break;
 			case 'not': $this->testNot($output);break;
 			case 'combined': $this->testCombined($output);break;
 			default: $output->writeln('<error>Please specify the type</error>');

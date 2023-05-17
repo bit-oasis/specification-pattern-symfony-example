@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Libs\Patterns\Specification\CompositeNested\Logical;
+namespace App\Libs\Patterns\Specification\CompositeAbstract\Logical;
 
-use App\Libs\Patterns\Specification\CompositeNested\Specification;
-use App\Libs\Patterns\Specification\CompositeNested\SpecificationContext;
+use App\Libs\Patterns\Specification\CompositeAbstract\Specification;
+use App\Libs\Patterns\Specification\CompositeAbstract\SpecificationContext;
 
 /**
  * @author Robert Mkrtchyan <mkrtchyanrobert@gmail.com>
